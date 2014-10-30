@@ -1,0 +1,7 @@
+<ul>
+<% @deals.each do |d| %>
+  <li><%= d.title %></li>
+<% end %>
+</ul>
+
+<%= will_paginate @deals %>

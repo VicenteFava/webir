@@ -35,6 +35,8 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'will_paginate', '~> 3.0'
 
 gem 'bootstrap-will_paginate'
+
+gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

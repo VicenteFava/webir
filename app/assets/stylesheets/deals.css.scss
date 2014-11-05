@@ -1,2 +1,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.upper_container{
+  display: block;
+}
+
+.search_container {
+  display: block;
+  margin: 0 auto;
+  width: 25%;
+}
+
+.middle_container{
+  margin-top: 3%;
+}
+
+.deal_container{
+  border: 1px solid #BDB4B4;
+  border-radius: 5px;
+  background-color: #BDB4B4;
+  padding: 10%;
+  min-height: 100px;
+}

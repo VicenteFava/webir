@@ -32,6 +32,33 @@ namespace :parser do
     end
   end
 
+  desc 'Fetch groupon deals'
+  task notelapierdas: :environment do
+    doc = Nokogiri::HTML(open('http://www.notelapierdas.com.uy/'))
+    deal = doc.css('li.item.small')[0]
+
+    
+
+    # ntlp_deal = Deal.new
+
+    dealSmall = deal.css('div.deal.small')
+
+    title = dealSmall.css('div.deal-title_small').css('h2')
+
+
+    tag_a = dealSmall.css('div.deal_product_image').css('div.media').css('a')[0]
+
+    reference = tag_a['href']
+    photo = tag_a.css('img')[0]['src']
+
+    precio = dealSmall.css('div.amount_small').text.to_s.gsub(/\s+/, "")
+    puts precio
+    # puts ntlp_deal.to_json
+
+      #woow_deal.save!
+  
+  end
+
   desc 'All'
   task :all => [:woow]
 

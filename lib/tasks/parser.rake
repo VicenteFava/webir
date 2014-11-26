@@ -21,9 +21,9 @@ namespace :parser do
       woow_deal.info1 = info[0].to_s.scan(/\>([^\]]*)\</).flatten[0]
       woow_deal.info2 = info[1].to_s.scan(/\>([^\]]*)\</).flatten[0]
 
-      woow_deal.price = deal.css('p.num-precio')[0].text.to_s.gsub(/\s+/, "")
-      woow_deal.saving = deal.css('p.num-porcen')[0].text.to_s.gsub(/\s+/, "")
-      woow_deal.bought = deal.css('p.num-comprados')[0].text.to_s.gsub(/\s+/, "")
+      woow_deal.price = deal.css('p.num-precio')[0].text.to_s.gsub(/\s+/, '')
+      woow_deal.saving = deal.css('p.num-porcen')[0].text.to_s.gsub(/\s+/, '')
+      woow_deal.bought = deal.css('p.num-comprados')[0].text.to_s.gsub(/\s+/, '')
 
       woow_deal.page = 'Woow'
       woow_deal.page_reference = 'http://www.woow.com.uy/'
@@ -35,28 +35,28 @@ namespace :parser do
   desc 'Fetch groupon deals'
   task notelapierdas: :environment do
     doc = Nokogiri::HTML(open('http://www.notelapierdas.com.uy/'))
-    deal = doc.css('li.item.small')[0]
-
+    deals = doc.css('li.item.small')
     
+    deals.each do |deal|
 
-    # ntlp_deal = Deal.new
+      ntlp_deal = Deal.new
+      
+      ntlp_deal.title = deal.css('div.deal-title_small').css('h2').text.gsub(/\s{2,}/, '')
 
-    dealSmall = deal.css('div.deal.small')
+      tag_a = deal.css('div.deal_product_image').css('div.media').css('a')[0]
+      ntlp_deal.reference = tag_a['href']
+      ntlp_deal.photo = tag_a.css('img')[0]['src']
 
-    title = dealSmall.css('div.deal-title_small').css('h2')
+      ntlp_deal.info1 = deal.css('div.deal-desc').css('p').text.gsub(/\s{2,}/, '')
 
+      ntlp_deal.price = deal.css('div.amount_small').text.to_s.gsub(/\s+/, '').split(/[$\s]+/)[2]
+      ntlp_deal.saving = deal.css('div.porcentaje_ahorro').text.to_s.gsub(/\s+/, '').gsub(/-/, '')
 
-    tag_a = dealSmall.css('div.deal_product_image').css('div.media').css('a')[0]
+      ntlp_deal.page = 'No te la pierdas'
+      ntlp_deal.page_reference = 'http://www.notelapierdas.com.uy/'
 
-    reference = tag_a['href']
-    photo = tag_a.css('img')[0]['src']
-
-    precio = dealSmall.css('div.amount_small').text.to_s.gsub(/\s+/, "")
-    puts precio
-    # puts ntlp_deal.to_json
-
-      #woow_deal.save!
-  
+      ntlp_deal.save!
+    end
   end
 
   desc 'All'

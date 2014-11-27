@@ -43,6 +43,10 @@ end
 gem 'bootstrap-will_paginate'
 
 gem 'bootstrap-sass'
+
+gem 'progress_bar'
+
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

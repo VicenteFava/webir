@@ -18,6 +18,7 @@
         <div class='deal_container'>
           <%= d.title %>
           <img src='<%= d.photo %>', class='deal_img'>
+          <%= link_to 'QIUERO SABER MÁS!', deal_path(d) %>
         </div>
       </div>
     <% if (i % 3 == 2) || (i == (@deals.length - 1))  %>

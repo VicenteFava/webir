@@ -1,6 +1,26 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@font-face {
+    font-family: OpenSansReg;
+    src: url('OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: OpenSansBold;
+    src: url(OpenSans-Semibold.ttf);
+}
+
+@font-face {
+    font-family: OpenSansSemiBold;
+    src: url(OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: OpenSansLight;
+    src: url(OpenSans-Light.ttf);
+}
+
 .upper_container{
   display: block;
 }
@@ -25,4 +45,121 @@
 
 .deal_img{
   max-width: 285px;
+}
+
+.deal_detail{
+  text-align: center;
+  margin-top: 4%;
+}
+
+.detail_container{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+  padding: 5%;
+  background: rgb(204, 211, 228);
+  border-radius: 9px;
+}
+
+.description_detail{
+  margin-top: 10%;
+}
+
+.title_detail{
+  font-size: 30px;
+  font-family: OpenSansBold;
+  margin-left: -13%;
+  margin-right: -13%;
+  background: rgb(65, 137, 65);
+  position: relative;
+  padding: 5%;
+}
+
+.detail_img{
+  max-width: 320px;
+}
+
+.save_title{
+  font-size: 15px;
+}
+
+.save_detail{
+  background: rgb(205, 0, 0);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: 8%;
+  margin-top: 10%;
+  padding-top: 8%;
+  font-size: 25px;
+  box-shadow: 3px 3px 3px #88888B;
+}
+
+.price_detail{
+  background: #cd0000;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: 8%;
+  margin-top: 10%;
+  padding-top: 14%;
+  font-size: 20px;
+  box-shadow: 3px 3px 3px #88888B;
+}
+
+.reference_container{
+  position: relative;
+  margin-top: 10%;
+  padding: 2%;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-size: 25px;
+  background: rgb(65, 137, 65);
+  font-family: OpenSansReg;
+}
+
+.triangle{
+  position: absolute;
+  right: -30px;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 0 30px 30px;
+  border-color: transparent transparent transparent rgb(65, 137, 65);
+}
+
+.tri-right{
+  right: 0px;
+  bottom: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 19px 0 0;
+  border-color: #7AB07A transparent transparent transparent;
+  position: absolute;
+}
+
+.tri-left{
+  bottom: -20px;
+  left: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent #7AB07A transparent transparent;
+}
+
+.price_container{
+  font-family: OpenSansReg;
+}
+
+.product_detail_title{
+  font-family: OpenSansSemiBold;
+  margin-bottom: 5%;
+}
+
+.product_detail_info{
+  font-family: OpenSansLight;
 }

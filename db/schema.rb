@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010225001) do
+ActiveRecord::Schema.define(version: 20141201234946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,13 +55,15 @@ ActiveRecord::Schema.define(version: 20141010225001) do
     t.string   "photo"
     t.string   "info1"
     t.string   "info2"
-    t.string   "price"
+    t.integer  "price"
     t.string   "saving"
     t.string   "bought"
     t.string   "page"
     t.string   "page_reference"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "dolars"
+    t.integer  "old_price"
   end
 
 end

@@ -49,7 +49,18 @@ namespace :parser do
 
       ntlp_deal.info1 = deal.css('div.deal-desc').css('p').text.gsub(/\s{2,}/, '')
 
-      ntlp_deal.price = deal.css('div.amount_small').text.to_s.gsub(/\s+/, '').split(/[$\s]+/)[2]
+      prices_string = deal.css('div.amount_small').text.to_s.gsub(/\s/, '')
+      if prices_string.include? 'U$S'
+        ntlp_deal.dolars = true
+      else
+        ntlp_deal.dolars = false
+      end
+      prices_array = prices_string.gsub('.', '').scan(/\d+/)
+      ntlp_deal.price = prices_array.last
+      if prices_array.length == 2
+        ntlp_deal.old_price = prices_array.first
+      end
+
       ntlp_deal.saving = deal.css('div.porcentaje_ahorro').text.to_s.gsub(/\s+/, '').gsub(/-/, '')
 
       ntlp_deal.page = 'No te la pierdas'
@@ -59,7 +70,51 @@ namespace :parser do
     end
   end
 
+  desc 'Fetch woow json deals'
+  task woow_json: :environment do
+
+    links = [ 'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=163',
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=164',
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=165',
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=166',
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=167' ]
+
+    links.each do |link|
+
+      result = JSON.parse(open(link).read)
+      
+      deals = result['offers']
+
+
+      deals.each do |deal|
+
+        woow_deal = Deal.new
+        
+        woow_deal.title = deal['name']
+
+        woow_deal.reference = deal['link']
+        woow_deal.photo = deal['imgsource']
+
+        woow_deal.info1 = deal['small_description_1']
+        woow_deal.info2 = deal['small_description_2']
+
+        woow_deal.saving = deal['discount']
+        woow_deal.bought = deal['coupons_bought']
+        deal['currency'] == 'U$S' ? woow_deal.dolars = true : woow_deal.dolars = false
+        deal['currency'] == 'U$S' ? woow_deal.price = deal['coupon_price_usd'].scan(/\d+/).first : woow_deal.price = deal['coupon_price'].scan(/\d+/).first
+         deal['currency'] == 'U$S' ? woow_deal.old_price = deal['ordinary_price_usd'].scan(/\d+/).first : woow_deal.old_price = deal['ordinary_price'].scan(/\d+/).first
+
+        woow_deal.page = 'WooW'
+        woow_deal.page_reference = 'http://www.woow.com.uy/'
+
+        woow_deal.save!
+      end
+    end
+
+  end
+
+
   desc 'All'
-  task :all => [:woow]
+  task :all => [:woow_json, :notelapierdas]
 
 end

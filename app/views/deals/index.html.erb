@@ -7,6 +7,15 @@
         </div>
         <%= submit_tag 'Search', :name => nil %>
       <% end %> 
+      <%= form_tag deals_path, :method => :get, :class => 'navbar-form navbar-left' do %>  
+        <div class='form-group'>
+          Price between
+          <%= text_field_tag :base, params[:base], class: 'form-control' %>
+          and
+          <%= text_field_tag :limit, params[:limit], class: 'form-control' %>
+        </div>
+        <%= submit_tag 'Filter', :name => nil %>
+      <% end %> 
     </div>
   </div>
       

@@ -19,13 +19,13 @@
         </div>
         <div class='price_container'>
           <div class='price_detail col-md-6'>
-            <%= '$ ' + @deal.price %>
+            <%= '$ ' + @deal.price.to_s %>
           </div>
           <div class='save_detail col-md-6'>
             <div class='save_title'>
               <%= 'Ahorrá un' %>
             </div>
-            <%= @deal.saving %>
+            <%= @deal.saving + '%'%>
           </div>
         </div>
       </div>  

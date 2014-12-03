@@ -19,5 +19,4 @@ doc/
 .idea
 .secret
 secrets.yml
-solr/development/data
-solr/development/pids
+solr/development/*

@@ -73,11 +73,17 @@ namespace :parser do
   desc 'Fetch woow json deals'
   task woow_json: :environment do
 
-    links = [ 'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=163',
-            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=164',
-            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=165',
-            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=166',
-            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=0&limit=1000&show=0&section_id=167' ]
+    links = [ 'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&limit=1000&show=0&section_id=163', #travel
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?date=2014-12-01&date_type=1&both=0&limit=1000&show=0&section_id=165', #estetica y bien estar
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?date=2014-12-01&date_type=1&both=0&limit=1000&show=0&section_id=166', #restaurantes
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=167', #ofertas del dia
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=181', #Shopping de Productos Tecnología
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=187', #Shopping de Productos Muebles
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=186', #Shopping de Productos Hogar
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=185', #Shopping de Productos Hogar
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=32&show=32&section_id=184', #Shopping de Productos Aire libre
+            'http://www.woow.com.uy/frontend/magic_enrutator/get_filtered_offer_boxes?both=1&order=popularidad&limit=1000&show=0&section_id=415' #shopping de productos outlet
+          ]
 
     links.each do |link|
 
@@ -101,8 +107,18 @@ namespace :parser do
         woow_deal.saving = deal['discount']
         woow_deal.bought = deal['coupons_bought']
         deal['currency'] == 'U$S' ? woow_deal.dolars = true : woow_deal.dolars = false
-        deal['currency'] == 'U$S' ? woow_deal.price = deal['coupon_price_usd'].scan(/\d+/).first : woow_deal.price = deal['coupon_price'].scan(/\d+/).first
-         deal['currency'] == 'U$S' ? woow_deal.old_price = deal['ordinary_price_usd'].scan(/\d+/).first : woow_deal.old_price = deal['ordinary_price'].scan(/\d+/).first
+        
+        if deal['currency'] == 'U$S'
+          woow_deal.price = deal['coupon_price_usd'].scan(/\d+/).first if deal['coupon_price_usd'].present?
+        else
+          woow_deal.price = deal['coupon_price'].scan(/\d+/).first if deal['coupon_price'].present?
+        end
+
+        if  deal['currency'] == 'U$S'
+          woow_deal.old_price = deal['ordinary_price_usd'].scan(/\d+/).first if deal['ordinary_price_usd'].present?
+        else
+          woow_deal.old_price = deal['ordinary_price'].scan(/\d+/).first if deal['ordinary_price'].present?
+        end
 
         woow_deal.page = 'WooW'
         woow_deal.page_reference = 'http://www.woow.com.uy/'

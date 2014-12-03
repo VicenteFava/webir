@@ -14,5 +14,7 @@ ActiveAdmin.register Deal do
   #   permitted
   # end
 
+  permit_params :title, :reference, :photo, :info1, :info2, :saving, :bought, :page, :page_reference, :dolars, :old_price, :price
+
 
 end

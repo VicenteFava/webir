@@ -9,15 +9,6 @@ class DealsController < ApplicationController
       end  
       @deals = @search.results
     end
-    filter = params[:base]
-    if filter.present?
-      @deals = @deals.where('price > ?', filter)
-    end
-    @deals
-    filter = params[:limit]
-    if filter.present?
-      @deals = @deals.where('price < ?', filter)
-    end
     @deals
   end
 

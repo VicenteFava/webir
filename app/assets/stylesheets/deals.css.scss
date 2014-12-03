@@ -1,25 +1,4 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
-@font-face {
-    font-family: OpenSansReg;
-    src: url('OpenSans-Regular.ttf');
-}
-
-@font-face {
-    font-family: OpenSansBold;
-    src: url(OpenSans-Semibold.ttf);
-}
-
-@font-face {
-    font-family: OpenSansSemiBold;
-    src: url(OpenSans-Bold.ttf);
-}
-
-@font-face {
-    font-family: OpenSansLight;
-    src: url(OpenSans-Light.ttf);
-}
 
 .upper_container{
   display: block;
@@ -27,139 +6,173 @@
 
 .search_container {
   display: block;
-  margin: 0 auto;
-  width: 25%;
+  margin-right: auto;
+  margin-left :auto;
+  margin-top: 30px;
+  width: 30%;
 }
 
-.middle_container{
-  margin-top: 3%;
-}
 
 .deal_container{
-  border: 1px solid #BDB4B4;
   border-radius: 5px;
-  background-color: #BDB4B4;
-  padding: 10%;
-  min-height: 100px;
+  background-color: rgba(0,0,0,0);
+  border : 2px solid #eeeeee; 
+  margin-bottom: 10%;
+  padding:0px;
+
+
 }
 
-.deal_img{
-  max-width: 285px;
+.form-group{
+  display: inline-block;
 }
 
-.deal_detail{
-  text-align: center;
-  margin-top: 4%;
+
+.dealImg{
+  width:100%;
+  display : block;
+  margin: 0 auto;
 }
 
-.detail_container{
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 5%;
-  padding: 5%;
-  background: rgb(204, 211, 228);
-  border-radius: 9px;
+.dealTitle{
+  text-align:center;
+  font-family: 'Neucha';
+  font-size:20px;
+  margin-top:25px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5%;
+  min-height:115px;
+  
+
+  
 }
 
-.description_detail{
-  margin-top: 10%;
+#title-container{
+  margin-top: 30px;
+  border-radius: 5px;
+
+}
+#title-span{
+  vertical-align:middle
 }
 
-.title_detail{
-  font-size: 30px;
-  font-family: OpenSansBold;
-  margin-left: -13%;
-  margin-right: -13%;
-  background: rgb(65, 137, 65);
-  position: relative;
-  padding: 5%;
+
+.dealPrice{
+  color:#87cac3;
+  font-family: 'Neucha';
+  font-size:25px;
+  font-weight: bold;
+  float:left;
+  
+  
+
+  
+
 }
 
-.detail_img{
-  max-width: 320px;
+.botonVerMas{
+  background-color:#eeeeee;
+  color:#000000;
+  font-family: 'Open Sans';
+  border-color:#eeeeee;
+  float:right;
 }
 
-.save_title{
-  font-size: 15px;
+
+.botonSubmit{
+  background-color:#87cac3;
+  
 }
 
-.save_detail{
-  background: rgb(205, 0, 0);
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin-left: 8%;
-  margin-top: 10%;
-  padding-top: 8%;
-  font-size: 25px;
-  box-shadow: 3px 3px 3px #88888B;
+.glyphicon-search{
+  color:#ffffff;
+
 }
 
-.price_detail{
-  background: #cd0000;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin-left: 8%;
-  margin-top: 10%;
-  padding-top: 14%;
-  font-size: 20px;
-  box-shadow: 3px 3px 3px #88888B;
+.infoAbajo{
+  margin-bottom:5%;
 }
 
-.reference_container{
-  position: relative;
-  margin-top: 10%;
-  padding: 2%;
-  margin-left: 25%;
-  margin-right: 25%;
-  font-size: 25px;
-  background: rgb(65, 137, 65);
-  font-family: OpenSansReg;
+.publicado{
+
+  color:#1B4564;
+  font-family: 'Open Sans';
+  font-size:14px;
+  text-align:center;
+  font-weight: bold;
+  margin-top:3%;
+  
 }
 
-.triangle{
-  position: absolute;
-  right: -30px;
-  top: 0px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 30px 0 30px 30px;
-  border-color: transparent transparent transparent rgb(65, 137, 65);
+.navbar{
+  background-color: rgba(0,0,0,0);
+  border-color:rgba(0,0,0,0);
+  margin-top:3%;
+  margin-bottom:3%;
+
+
 }
 
-.tri-right{
-  right: 0px;
-  bottom: -20px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 20px 19px 0 0;
-  border-color: #7AB07A transparent transparent transparent;
-  position: absolute;
+.navbar-brand{
+
+  font-family: 'Crushed';
+   font-size:50px;
+   text-align:center;
+   color:#1B4564 !important;
+ 
 }
 
-.tri-left{
-  bottom: -20px;
-  left: 0;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 20px 20px 0;
-  border-color: transparent #7AB07A transparent transparent;
+
+.botonSubmit:focus,
+.botonSubmit:active,
+.botonSubmit:hover
+{
+  background-color:#87cac3;
+  border-color:#87cac3;
+  color:#FFF;
 }
 
-.price_container{
-  font-family: OpenSansReg;
+
+
+
+
+
+#dropdownMenu1{
+  
+  color:#1B4564;
+  font-family: 'Open Sans';
+  font-size:14px;
+  border-radius:4px;
+  border: 1px solid #cccccc;
+  padding:6px 12px;
+
 }
 
-.product_detail_title{
-  font-family: OpenSansSemiBold;
-  margin-bottom: 5%;
+#dropdownMenu1:focus,
+#dropdownMenu1:active,
+#dropdownMenu1:hover
+{
+  
+ background-color:#87cac3;
+  border-color:#87cac3;
+  color:#FFF;
+
 }
 
-.product_detail_info{
-  font-family: OpenSansLight;
+
+.navbar-nav{
+  margin-top:8px;
+
+}
+
+
+@media screen and (max-width: 767px) {
+  .navbar-brand{
+    font-size:45px; 
+  }
+  
+  .dealTitle{
+    min-height: 55px;
+  }
 }

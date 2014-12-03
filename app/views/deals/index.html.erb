@@ -1,41 +1,85 @@
-<div class='container'>
-  <div class='row upper_container'>
-    <div class='search_container'>
-        <%= form_tag deals_path, :method => :get, :class => 'navbar-form navbar-left' do %>  
-        <div class='form-group'>
-          <%= text_field_tag :search, params[:search], class: 'form-control' %>
+<!DOCTYPE html>
+<html>
+  <body>
+    <nav class="navbar navbar-default " role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">NoTeDuermas.com</a>
         </div>
-        <%= submit_tag 'Search', :name => nil %>
-      <% end %> 
-      <%= form_tag deals_path, :method => :get, :class => 'navbar-form navbar-left' do %>  
-        <div class='form-group'>
-          Price between
-          <%= text_field_tag :base, params[:base], class: 'form-control' %>
-          and
-          <%= text_field_tag :limit, params[:limit], class: 'form-control' %>
-        </div>
-        <%= submit_tag 'Filter', :name => nil %>
-      <% end %> 
-    </div>
-  </div>
-      
-  <% @deals.each_with_index do |d, i| %>
-    <% if i % 3 == 0 %>
-      <div class='row middle_container'>
-    <% end %>  
-      <div class='col-md-4'>
-        <div class='deal_container'>
-          <%= d.title %>
-          <img src='<%= d.photo %>', class='deal_img'>
-          <%= link_to 'QIUERO SABER MÁS!', deal_path(d) %>
-        </div>
-      </div>
-    <% if (i % 3 == 2) || (i == (@deals.length - 1))  %>
-      </div>
-    <% end %>
-  <% end %>
 
-  <div class='text-center'>
-    <%= will_paginate @deals %>
-  </div>
-</div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-right" role="search">
+            <%= form_tag deals_path, :method => :get, :class => 'navbar-form navbar-left' do %>
+              <div class='form-group'>
+                <%= text_field_tag :search, params[:search], class: 'form-control' %>
+              </div>
+               <button type="submit" class="btn btn-default  botonSubmit">
+                  <i class="glyphicon glyphicon-search"></i>
+              </button>
+            <% end %> 
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" id="dropdownMenu1"data-toggle="dropdown" role="button" aria-expanded="false">Todos los precios <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to "Menor que $500", deals_path(:limit => "500", :search =>params[:search]) %></li>
+                <li><%= link_to "Entre $500 y $1000", deals_path(:base => "500", :limit =>"1000",:search =>params[:search])%></li>
+                <li><%= link_to "Mayor que $1000", deals_path(:base => "1000", :search =>params[:search]) %></li>
+              </ul> 
+            </li>
+          </ul>
+        
+        </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <div class='container'> 
+      <div class='row middle_container'>
+        <% @deals.each_with_index do |d| %> 
+          <div class='col-md-3 col-sm-6 col-xs-12'>
+              <div class="deal_container col-xs-12">
+                <img src='<%= d.photo %>', class='dealImg'>
+                <div class="dealTitle">
+                  <%= d.title %>
+                </div>
+                <div class="infoAbajo col-md-12">
+                  <div class=" col-xs-7" >
+                    <div class="dealPrice"> 
+                      <% if d.dolars %>
+                        U$S
+                      <% else %>
+                        $
+                      <% end %>
+                      <%= d.price %>
+                    </div>
+                  </div>
+                  <div class="col-xs-5" >
+                    <div class="btn btn-default botonVerMas">
+                      <%= link_to 'Ver más', deal_path(d) %>
+                    </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="publicado"> 
+                      Publicado por 
+                      <%= d.page %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+      <div class='text-center'>
+        <%= will_paginate @deals %>
+      </div>
+    </div> 
+  </body>
+</html>
+

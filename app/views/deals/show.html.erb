@@ -1,38 +1,30 @@
-<div class='deal_detail'>
-  <div class='detail_container'>
-    <div class='row title_detail'>
-      <div class='tri-right'></div>
-      <div class='tri-left'></div>
-      <%= @deal.title %>
-    </div>
-    <div class='row description_detail'>
-      <div class='col-md-6'>
-        <img src='<%= @deal.photo %>', class='detail_img'>
-      </div> 
-      <div class='detail_img col-md-1'></div>
-      <div class='detail_img col-md-5'>
-        <div class='product_detail_title'>
-          <span >detalles del producto</span>
-        </div>
-        <div class='product_detail_info'>
-          <%= @deal.info1 %>
-        </div>
-        <div class='price_container'>
-          <div class='price_detail col-md-6'>
-            <%= '$ ' + @deal.price.to_s %>
+        <div class='row middle_container'>
+          <div class='col-md-3 col-sm-6 col-xs-12'>
+              <div class="deal_container col-xs-12">
+                <img src='<%= @deal.photo %>', class='dealImg'>
+                <div class="dealTitle">
+                  <%= @deal.title %>
+                </div>
+                <div class="infoAbajo col-md-12">
+                  <div class=" col-xs-7" >
+                    <div class="dealPrice"> 
+                      <div class="dealPrice"> 
+                        <% if @deal.dolars %>
+                          U$S
+                        <% else %>
+                          $
+                        <% end %>
+                        <%= @deal.price %>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="publicado"> 
+                      Publicado por 
+                      <%= @deal.page %>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
-          <div class='save_detail col-md-6'>
-            <div class='save_title'>
-              <%= 'Ahorrá un' %>
-            </div>
-            <%= @deal.saving + '%'%>
-          </div>
         </div>
-      </div>  
-    </div>
-  <div class='reference_container'>
-    <div class='triangle'></div>
-    <a href= <%=@deal.reference %>>IR A LA OFERTA!</a>
-  </div>
-  </div>
-</div>

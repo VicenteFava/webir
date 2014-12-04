@@ -34,37 +34,43 @@
     </nav>
     <div class='container'> 
       <div class='row middle_container'>
-        <% @deals.each_with_index do |d| %> 
-          <div class='col-md-3 col-sm-6 col-xs-12'>
-              <div class="deal_container col-xs-12">
-                <img src='<%= d.photo %>', class='dealImg'>
-                <div class="dealTitle">
-                  <%= d.title %>
+        <% if @deals.present? %>
+          <% @deals.each_with_index do |d| %> 
+            <div class='col-md-3 col-sm-6 col-xs-12'>
+                <div class="deal_container col-xs-12">
+                  <img src='<%= d.photo %>', class='dealImg'>
+                  <div class="dealTitle">
+                    <%= d.title %>
+                  </div>
+                  <div class="infoAbajo col-md-12">
+                    <div class=" col-xs-7" >
+                      <div class="dealPrice"> 
+                        <% if d.dolars %>
+                          U$S
+                        <% else %>
+                          $
+                        <% end %>
+                        <%= d.price %>
+                      </div>
+                    </div>
+                    <div class="col-xs-5" >
+                      <div class="btn btn-default botonVerMas">
+                        <%= link_to 'Ver más', deal_path(d.id) %>
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="publicado"> 
+                        Publicado por 
+                        <%= d.page %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="infoAbajo col-md-12">
-                  <div class=" col-xs-7" >
-                    <div class="dealPrice"> 
-                      <% if d.dolars %>
-                        U$S
-                      <% else %>
-                        $
-                      <% end %>
-                      <%= d.price %>
-                    </div>
-                  </div>
-                  <div class="col-xs-5" >
-                    <div class="btn btn-default botonVerMas">
-                      <%= link_to 'Ver más', deal_path(d.id) %>
-                    </div>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="publicado"> 
-                      Publicado por 
-                      <%= d.page %>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="dealTitle">
+            No se han encontrado resultados para su busqueda!
           </div>
         <% end %>
       </div>

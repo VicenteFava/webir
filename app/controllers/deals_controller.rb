@@ -5,11 +5,14 @@ class DealsController < ApplicationController
     query = params[:search]
     if query.present?
       search = Deal.search(query, params[:page], params[:range_id])
-      puts search.inspect
-      @deals = search.results
+      @deals =  search.results
+    elsif params[:range_id].present?
+      search = Deal.search_by_price(params[:page], params[:range_id])
+      @deals = search.paginate(:page => params[:page])
     else
-      @deals = Deal.paginate(:page => params[:page])
+       @deals = Deal.paginate(:page => params[:page])
     end
+    @deals
   end
 
   def show

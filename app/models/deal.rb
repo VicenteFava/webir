@@ -55,4 +55,15 @@ class Deal < ActiveRecord::Base
     search
   end
 
+  def self.search_by_price page, range_id
+    if range_id == '1'
+      search = Deal.where('price < ?', 500)
+    elsif range_id == '2'
+      search = Deal.where('price >= ? and price <= ? ', 500, 1000)
+    elsif range_id == '3'
+      search = Deal.where('price > ?', 1000)
+    end
+    search
+  end
+
 end

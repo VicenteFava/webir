@@ -61,6 +61,8 @@ namespace :parser do
         ntlp_deal.old_price = prices_array.first
       end
 
+      ntlp_deal.dolars ? ntlp_deal.filter_price = ntlp_deal.price * 24 : ntlp_deal.filter_price = ntlp_deal.price
+
       ntlp_deal.saving = deal.css('div.porcentaje_ahorro').text.to_s.gsub(/\s+/, '').gsub(/-/, '')
 
       ntlp_deal.page = 'No te la pierdas'
@@ -119,6 +121,8 @@ namespace :parser do
         else
           woow_deal.old_price = deal['ordinary_price'].scan(/\d+/).first if deal['ordinary_price'].present?
         end
+
+        woow_deal.dolars ? woow_deal.filter_price = woow_deal.price * 24 : woow_deal.filter_price = woow_deal.price
 
         woow_deal.page = 'WooW'
         woow_deal.page_reference = 'http://www.woow.com.uy/'

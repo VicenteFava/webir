@@ -2,7 +2,7 @@ class Deal < ActiveRecord::Base
   searchable do  
     text :title, :boost => 5 
     text :info1, :info2, :page
-    integer :price
+    integer :filter_price
   end
 
   def self.search query, page, range_id
@@ -30,7 +30,7 @@ class Deal < ActiveRecord::Base
   def self.greater_deals query, page
     search = Deal.solr_search do
       fulltext query
-      with(:price).greater_than(1000)
+      with(:filter_price).greater_than(1000)
       paginate :page => page, :per_page => 16
     end
     search
@@ -39,8 +39,8 @@ class Deal < ActiveRecord::Base
   def self.between_deals query, page
     search = Deal.solr_search do
       fulltext query
-      with(:price).greater_than(500)
-      with(:price).less_than(1000)
+      with(:filter_price).greater_than(499)
+      with(:filter_price).less_than(1000)
       paginate :page => page, :per_page => 16
     end
     search
@@ -49,7 +49,7 @@ class Deal < ActiveRecord::Base
   def self.less_deals query, page
     search = Deal.solr_search do
       fulltext query
-      with(:price).less_than(500)
+      with(:filter_price).less_than(500)
       paginate :page => page, :per_page => 16
     end
     search
@@ -57,11 +57,11 @@ class Deal < ActiveRecord::Base
 
   def self.search_by_price page, range_id
     if range_id == '1'
-      search = Deal.where('price < ?', 500)
+      search = Deal.where('filter_price < ?', 500)
     elsif range_id == '2'
-      search = Deal.where('price >= ? and price <= ? ', 500, 1000)
+      search = Deal.where('filter_price >= ? and filter_price <= ? ', 500, 1000)
     elsif range_id == '3'
-      search = Deal.where('price > ?', 1000)
+      search = Deal.where('filter_price > ?', 1000)
     end
     search
   end

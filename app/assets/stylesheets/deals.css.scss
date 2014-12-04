@@ -20,7 +20,15 @@
   margin-bottom: 10%;
   padding:0px;
 
+}
 
+.show_container{
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border : 2px solid #eeeeee; 
+    margin-bottom: 10%;
+    padding-left:5%;
+    
 }
 
 .form-group{
@@ -34,6 +42,20 @@
   margin: 0 auto;
 }
 
+.showImg{
+  display : block;
+  padding:0px;
+  width:100%;
+  border-radius:5%;
+}
+
+.imgContainer{
+  border:2px solid #1B4564 ;
+  padding:0px;
+  margin-bottom:5%;
+  border-radius:5%;
+}
+
 .dealTitle{
   text-align:center;
   font-family: 'Neucha';
@@ -42,10 +64,41 @@
   margin-right:5px;
   margin-left:5px;
   margin-bottom:5%;
-  min-height:115px;
-  
+  min-height:115px;   
+}
 
-  
+
+.showTitle{
+  font-family: 'Open Sans';
+  font-size:25px;
+  margin-top:25px;
+  margin-bottom:3%;
+  font-weight:bold;
+  color:#1B4564 !important; 
+}
+
+.showDescription{
+  text-align:center;
+  font-family: 'Neucha';
+  font-size:20px;
+  margin-bottom:5%;
+  margin-top:3%;
+}
+
+.showPrices{
+  margin-top:5px;
+}
+
+.verMas{
+  margin-top:20px;
+  text-align: center;
+}
+.linkPagina{
+  color:#1B4564;
+  font-family: 'Open Sans';
+  font-size:16px;
+  text-align:center;
+  font-weight: bold;
 }
 
 #title-container{
@@ -64,11 +117,14 @@
   font-size:25px;
   font-weight: bold;
   float:left;
-  
-  
-
-  
-
+}
+.showPrice{
+  color:#87cac3;
+  font-family: 'Neucha';
+  font-size:25px;
+  font-weight: bold;
+  float:left;
+  text-align:center;
 }
 
 .botonVerMas{
@@ -174,5 +230,8 @@
   
   .dealTitle{
     min-height: 55px;
+  }
+  .showTitle{
+    text-align:center;
   }
 }

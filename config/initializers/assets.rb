@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( deals.css )
+Rails.application.config.assets.precompile += %w( deals.css.scss )

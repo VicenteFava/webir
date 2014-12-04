@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">NoTeDuermas.com</a>
+          <a class="navbar-brand" href="/deals">NoTeDuermas.com</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,9 +30,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" id="dropdownMenu1"data-toggle="dropdown" role="button" aria-expanded="false">Todos los precios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li><%= link_to "Menor que $500", deals_path(:limit => "500", :search =>params[:search]) %></li>
-                <li><%= link_to "Entre $500 y $1000", deals_path(:base => "500", :limit =>"1000",:search =>params[:search])%></li>
-                <li><%= link_to "Mayor que $1000", deals_path(:base => "1000", :search =>params[:search]) %></li>
+                <li><%= link_to "Menor que $500", deals_path(:limit => "500") %></li>
+                <li><%= link_to "Entre $500 y $1000", deals_path(:base => "500", :limit =>"1000")%></li>
+                <li><%= link_to "Mayor que $1000", deals_path(:base => "1000") %></li>
               </ul> 
             </li>
           </ul>
@@ -62,7 +62,7 @@
                   </div>
                   <div class="col-xs-5" >
                     <div class="btn btn-default botonVerMas">
-                      <%= link_to 'Ver más', deal_path(d) %>
+                      <%= link_to 'Ver más', deal_path(d.id) %>
                     </div>
                   </div>
                   <div class="col-xs-12">

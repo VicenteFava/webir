@@ -1,25 +1,15 @@
 class DealsController < ApplicationController
 
   def index
-    @deals = Deal.paginate(:page => params[:page])
-    @query = params[:search]
-    if !@query.nil?
-      @search = Sunspot.search(Deal) do |query|  
-          query.keywords @query
-      end  
-      @deals = @search.results
+    @range = [['Menos de 500', '1'], ['Entre 500 y 1000', '2'], ['Mas de 1000', '3']]
+    query = params[:search]
+    if query.present?
+      search = Deal.search(query, params[:page], params[:range_id])
+      puts search.inspect
+      @deals = search.results
+    else
+      @deals = Deal.paginate(:page => params[:page])
     end
-
-    filter = params[:base]
-    if filter.present?
-      @deals = @deals.where('price > ?', filter)
-    end
-    @deals
-    filter = params[:limit]
-    if filter.present?
-      @deals = @deals.where('price < ?', filter)
-    end
-    @deals
   end
 
   def show

@@ -221,6 +221,25 @@
   margin-top:8px;
 
 }
+.bought_container{
+ .bought_circle{
+  color: orange;
+  font-family: 'Neucha';
+  width: 100px;
+  border-radius: 145px;
+  height: 100px;
+  position: absolute;
+  right: 10px;
+  text-align: center;
+  padding-top: 2%;
+    .bought_amount{
+      font-size: 26px;
+    }
+    .bought_title{
+      font-size: 13px;
+    }
+  } 
+}
 
 
 @media screen and (max-width: 767px) {

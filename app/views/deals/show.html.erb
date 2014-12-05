@@ -18,6 +18,18 @@
     </nav>
     <div class='container'>   
       <div class=' col-md-10 col-md-offset-1 col-sm-12 col-xs-12 show_container'>
+        <div class='bought_container'>
+          <div class='bought_circle'>
+            <% if @deal.bought.present? %>
+                <div class='bought_amount'>
+                  <%= @deal.bought %>
+                </div>
+                <div class='bought_title'>
+                  COMPRADOS
+                </div>
+            <% end %>
+          </div>
+        </div>
         <div class="showTitle">
           <%= @deal.title %>
         </div>
@@ -27,6 +39,10 @@
         <div class="showInfo col-xs-12 col-sm-7 col-md-7 ">
           <div class="showDescription col-xs-12">
             <%= @deal.info1 %>
+            <% if @deal.info2.present? %>
+              <br>
+              <%= @deal.info2 %>
+            <% end %>
           </div>
           <div class="showPrices col-xs-8">
             <div class="showPrice col-xs-6" >

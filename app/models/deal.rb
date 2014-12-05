@@ -65,5 +65,4 @@ class Deal < ActiveRecord::Base
     end
     search
   end
-
 end
